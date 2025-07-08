@@ -6,5 +6,5 @@ from uuid import UUID
 
 
 def process_order(order_id: UUID) -> None:
-    time.sleep(1) # Имитация длительной обработки заказа
+    time.sleep(60) # Имитация длительной обработки заказа
     order_storage.update_status(order_id, OrderStatus.COMPLETE)

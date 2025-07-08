@@ -1,0 +1,18 @@
+
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile.prod
+    ports:
+      - "8000:8000"
+    environment:
+      - REDIS_HOST=redis  # Используем имя сервиса вместо 0.0.0.0
+      - REDIS_PORT=6379
+    networks:
+      - redis-net
+
+networks:
+  redis-net:
+    external: true
+    name: redis-network  # Должно совпадать с сетью в redis-compose

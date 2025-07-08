@@ -1,0 +1,24 @@
+
+services:
+  redis:
+    image: redis:8.0.2-bookworm
+    container_name: redis-service  # Явное имя для простоты подключения
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 2s
+      retries: 5
+    networks:
+      - redis-net
+
+volumes:
+  redis_data:
+
+networks:
+  redis-net:
+    name: redis-network
+    driver: bridge

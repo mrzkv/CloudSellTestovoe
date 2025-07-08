@@ -2,8 +2,8 @@ FROM python:3.13-bookworm
 
 WORKDIR /app
 
-# Копируем только нужные для установки зависимостей файлы
-COPY pyproject.toml uv.lock ./
+# Копируем зависимости
+COPY pyproject.toml  .
 
 # Установка uv и зависимостей
 RUN pip install uv && uv pip install . --system
